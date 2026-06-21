@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Say Hi to Li</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #f8fafc;
+    font-family: Inter, sans-serif;
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 940px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* TOP GRID */
+  .top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    min-height: 260px;
+  }
+
+  .left {
+    background: #fef7f2;
+  }
+
+  .right {
+    background: #f2f8fb;
+    display: flex;
+    align-items: center;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .say-hi {
+    font-family: "Gochi Hand", cursive;
+    font-size: 26px;
+    line-height: 1.1;
+  }
+
+  .li {
+    font-family: "Gochi Hand", cursive;
+    font-size: 74px;
+    color: #ce4f00;
+    line-height: 1;
+  }
+
+  /* MASCOT */
+  .mascot {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .mascot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* FORM */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .input {
+    height: 52px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: #ce4f00;
+  }
+
+  .btn {
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #ce4f00;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: #b54700;
+  }
+
+  /* RIGHT CARD */
+  .right ol {
+    padding-left: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #0f172a;
+  }
+
+  /* VIDEO SECTION */
+  .video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    background: black;
+  }
+
+  .video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    body { padding: 20px; }
+
+    .top {
+      grid-template-columns: 1fr;
+    }
+
+    .li {
+      font-size: 56px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- TOP SECTION -->
+  <div class="top">
+
+    <!-- LEFT CARD -->
+    <div class="card left">
+
+      <div class="header">
+
+        <div class="title">
+          <div class="say-hi">Say Hi<br/>to</div>
+          <div class="li">Li</div>
+        </div>
+
+        <!-- MASCOT IMAGE -->
+        <div class="mascot">
+          <img src="media/Li.png" alt="mascot"/>
+        </div>
+
+      </div>
+
+      <div class="form">
+        <input class="input" type="email" placeholder="john.doe@gmail.com" />
+        <button class="btn" onclick="joinWaitlist()">Join Waitlist →</button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="card right">
+      <ol>
+        <li>Scroll faster.</li>
+        <li>Discover founders’ posts.</li>
+        <li>Be the first to reach out!</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM VIDEO SECTION -->
+  <div class="video">
+    <video autoplay muted loop playsinline controls>
+      <source src="media/Li-Jobs.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+</div>
+
+<script>
+async function joinWaitlist() {
+  const email = document.querySelector('.input').value;
+
+  try {
+    const formData = new FormData();
+    formData.append("email", email);
+
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbwlhQx3K83ysyU8F2ubQ2E3YWpUVV0LIQpfMWy42DhEOSvtzfPwWNUnYYJ5hjPyn36e/exec",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
+
+    alert("Added to waitlist!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+</script>
+</body>
+</html>
