@@ -200,7 +200,7 @@
 
       <div class="form">
         <input class="input" type="email" placeholder="john.doe@gmail.com" />
-        <button class="btn" onclick="this.disabled=true;joinWaitlist(this)">Join Waitlist →</button>
+        <button class="btn" onclick="joinWaitlist(this)">Join Waitlist →</button>
       </div>
 
     </div>
@@ -228,6 +228,7 @@
 
 <script>
 async function joinWaitlist(btn) {
+  btn.disabled = true;
   const email = document.querySelector('.input').value;
 
   try {
@@ -243,10 +244,11 @@ async function joinWaitlist(btn) {
     );
 
     alert("Added to waitlist!");
-    btn.disabled = false;
+    
   } catch (err) {
-     btn.disabled = false;
     console.error(err);
+  } finally {
+    btn.disabled = false;
   }
 }
 </script>
